@@ -34,13 +34,9 @@ import frc.robot.commands.ArmUpCommand;
 import frc.robot.commands.CloseClawCommand;
 import frc.robot.commands.OpenClawCommand;
 import frc.robot.commands.TeleopDriveCommand;
-import frc.robot.commands.GamepieceRetriever;
-import frc.robot.commands.TurnToPowerCellCommand;
-import frc.robot.commands.HatchPrint;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.ClawSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.VisionSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -55,8 +51,7 @@ public class RobotContainer {
   private final ArmSubsystem arm = new ArmSubsystem();
   private final ClawSubsystem claw = new ClawSubsystem();
   private final DriveSubsystem drive = new DriveSubsystem();
-  private final VisionSubsystem vision = new VisionSubsystem();
-  private final GamepieceRetriever retriever = new GamepieceRetriever(vision, drive);
+
 
   private final XboxController gamepad = new XboxController(0);
 
@@ -99,9 +94,7 @@ public class RobotContainer {
     dpadUp.whenPressed(new ArmUpCommand(arm));
     dpadRight.whenPressed(new ArmMiddleCommand(arm));
     dpadDown.whenPressed(new ArmDownCommand(arm));
-    rightBumper.whenPressed(retriever.getCargoCommand());
-    // rightBumper.whenPressed(new HatchPrint(vision));
-    leftBumper.whenPressed(new TurnToPowerCellCommand(drive, vision));
+    
   }
 
   TrajectoryConfig config = new TrajectoryConfig(0.25, 1)
