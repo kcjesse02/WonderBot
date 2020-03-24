@@ -13,6 +13,7 @@ public class testCommand extends CommandBase {
   /**
    * Creates a new testCommand.
    */
+  isFinished = false;
   public testCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -25,6 +26,8 @@ public class testCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    table.putString("status", "functional");
+    isFinished = true;
   }
 
   // Called once the command ends or is interrupted.
@@ -35,6 +38,5 @@ public class testCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
   }
 }
