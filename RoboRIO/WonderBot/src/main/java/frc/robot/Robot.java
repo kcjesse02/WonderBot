@@ -26,7 +26,7 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
-
+  public NetworkTable table;
 
 
   /**
@@ -39,7 +39,7 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
     NetworkTableInstance inst = NetworkTableInstance.getDefault();
-    NetworkTable table = inst.getTable("wondertable");
+    table = inst.getTable("wondertable");
     /*
     UsbCamera cam = CameraServer.getInstance().startAutomaticCapture();
     cam.setResolution(640, 480);
