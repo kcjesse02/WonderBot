@@ -13,9 +13,10 @@ public class testCommand extends CommandBase {
   /**
    * Creates a new testCommand.
    */
-  boolean isFinished = false;
+  boolean isFinished;
   public testCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
+    isFinished = false;
   }
 
   // Called when the command is initially scheduled.

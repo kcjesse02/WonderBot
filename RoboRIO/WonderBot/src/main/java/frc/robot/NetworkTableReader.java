@@ -19,5 +19,6 @@ public class NetworkTableReader extends ParallelCommandGroup {
   public NetworkTableReader() {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());super();
+    super(new testCommand());
   }
 }
