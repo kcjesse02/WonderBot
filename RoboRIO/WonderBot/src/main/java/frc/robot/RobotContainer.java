@@ -37,6 +37,9 @@ import frc.robot.commands.TeleopDriveCommand;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.ClawSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -54,6 +57,8 @@ public class RobotContainer {
 
 
   private final XboxController gamepad = new XboxController(0);
+  private final NetworkTableInstance inst = NetworkTableInstance.getDefault();
+  public final NetworkTable wonderTable = inst.getTable("wondertable");
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -88,6 +93,7 @@ public class RobotContainer {
     final Button dpadDown = new POVButton(gamepad, 180);
     final Button rightBumper = new JoystickButton(gamepad, XboxController.Button.kBumperRight.value);
     final Button leftBumper = new JoystickButton(gamepad, XboxController.Button.kBumperLeft.value);
+
 
     a.whenPressed(new OpenClawCommand(claw));
     b.whenPressed(new CloseClawCommand(claw));

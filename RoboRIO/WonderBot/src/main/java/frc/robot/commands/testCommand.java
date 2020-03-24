@@ -8,6 +8,10 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import frc.robot.RobotContainer;
 
 public class testCommand extends CommandBase {
   /**
@@ -27,7 +31,7 @@ public class testCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    table.putString("status", "functional");
+    wonderTable.putString("status", "functional");
     isFinished = true;
   }
 
