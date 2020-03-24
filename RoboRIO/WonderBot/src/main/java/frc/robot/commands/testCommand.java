@@ -13,7 +13,7 @@ public class testCommand extends CommandBase {
   /**
    * Creates a new testCommand.
    */
-  isFinished = false;
+  boolean isFinished = false;
   public testCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
