@@ -48,15 +48,16 @@ def main(config):
     print("Connecting to Network Tables")
     ntinst = NetworkTablesInstance.getDefault()
     ntinst.startClientTeam(team)
+    command_entry = ntinst.getTable("wondertable").getEntry("command")
 
     while True: 
-        r = requests.get("https://wonderboxbot.appspot.com/data")
+        r = requests.get("https://wonderboxbot.appspot.com/data", verify=False)
         val = r.json()["command"]
         print("command is {}".format(val))
         if (val != 0):
-            """ fill in networktables """
+            command_entry.setNumber(val)
             dat = {"command":0}
-            r = requests.post("https://wonderboxbot.appspot.com/data", data = json.dumps(dat))
+            r = requests.post("https://wonderboxbot.appspot.com/data", data = json.dumps(dat), verify=False)
         time.sleep(0.5)
 
 

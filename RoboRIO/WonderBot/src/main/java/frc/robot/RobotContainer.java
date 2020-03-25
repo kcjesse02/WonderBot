@@ -22,8 +22,6 @@ import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -38,7 +36,6 @@ import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.ClawSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
 /**
@@ -52,7 +49,7 @@ public class RobotContainer {
   private final PowerDistributionPanel pdp = new PowerDistributionPanel();
 
   private final ArmSubsystem arm = new ArmSubsystem();
-  private final ClawSubsystem claw = new ClawSubsystem();
+  public final static ClawSubsystem claw = new ClawSubsystem();
   private final DriveSubsystem drive = new DriveSubsystem();
 
 
@@ -91,8 +88,8 @@ public class RobotContainer {
     final Button dpadUp = new POVButton(gamepad, 0);
     final Button dpadRight = new POVButton(gamepad, 90);
     final Button dpadDown = new POVButton(gamepad, 180);
-    final Button rightBumper = new JoystickButton(gamepad, XboxController.Button.kBumperRight.value);
-    final Button leftBumper = new JoystickButton(gamepad, XboxController.Button.kBumperLeft.value);
+    //final Button rightBumper = new JoystickButton(gamepad, XboxController.Button.kBumperRight.value);
+    //final Button leftBumper = new JoystickButton(gamepad, XboxController.Button.kBumperLeft.value);
 
 
     a.whenPressed(new OpenClawCommand(claw));

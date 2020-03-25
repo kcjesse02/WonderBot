@@ -7,14 +7,16 @@
 
 package frc.robot;
 
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.CloseClawCommand;
+import frc.robot.commands.OpenClawCommand;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import java.lang.System;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -24,6 +26,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
+  //private final ClawSubsystem claw = new ClawSubsystem();
 
   private RobotContainer m_robotContainer;
   public NetworkTable table;
@@ -40,6 +43,9 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
     NetworkTableInstance inst = NetworkTableInstance.getDefault();
     table = inst.getTable("wondertable");
+    NetworkTableEntry ent = table.getEntry("command");
+    ent.setNumber(0);
+    
     /*
     UsbCamera cam = CameraServer.getInstance().startAutomaticCapture();
     cam.setResolution(640, 480);
@@ -62,9 +68,7 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-    if(table.getEntry("command") != 0){
-      CommandScheduler.schedule(NetworkTableReader());
-    }
+    
   }
 
   /**
@@ -104,7 +108,7 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    CommandScheduler.schedule(NetworkTableReader());
+    //CommandScheduler.schedule(NetworkTableReader());
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
@@ -115,6 +119,18 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    NetworkTableEntry ent = table.getEntry("command");
+    int command = ent.getNumber(0).intValue();
+    if( command == 3){
+      OpenClawCommand cl = new OpenClawCommand(RobotContainer.claw);
+      cl.schedule();
+      ent.setNumber(0);
+    }
+    if( command == 4){
+      CloseClawCommand cl = new CloseClawCommand(RobotContainer.claw);
+      cl.schedule();
+      ent.setNumber(0);
+    }
   }
 
   @Override
