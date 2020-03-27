@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.PWMTalonSRX;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.DriveSubsystem;
@@ -51,6 +52,7 @@ public class DriveToDistance extends CommandBase {
     System.out.println("wheel speed: "+drive.getWheelSpeeds());
     //checks to see if the translation part of the robot position is equal to the target translation.
     if((updateDist.getTranslation()).getY() >= (targetDist.getTranslation().getY())+0.2 && updateDist.getTranslation().getY() <= (updateDist.getTranslation()).getY()-0.2 && (updateDist.getTranslation()).getX() >= (targetDist.getTranslation().getX())+0.2 && (updateDist.getTranslation()).getX() >= (targetDist.getTranslation().getX())-0.2){
+      System.out.println("Done!");
       isFinished = true;
     }
   }
