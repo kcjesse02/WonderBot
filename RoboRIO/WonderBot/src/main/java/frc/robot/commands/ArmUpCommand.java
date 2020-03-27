@@ -7,21 +7,30 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ArmSubsystem;
 
 public class ArmUpCommand extends CommandBase {
   private final ArmSubsystem arm;
+  private final double data;
 
-  public ArmUpCommand(ArmSubsystem arm) {
+
+  public ArmUpCommand(ArmSubsystem arm, double data) {
     this.arm = arm;
+    this.data = data;
+
 
     addRequirements(arm);
   }
 
   @Override
   public void execute() {
-    arm.setSetpoint(50.0);
+
+      arm.setSetpoint(data);
+    
   }
 
   @Override

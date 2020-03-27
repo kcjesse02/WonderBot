@@ -48,9 +48,9 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final PowerDistributionPanel pdp = new PowerDistributionPanel();
 
-  private final ArmSubsystem arm = new ArmSubsystem();
+  public final static ArmSubsystem arm = new ArmSubsystem();
   public final static ClawSubsystem claw = new ClawSubsystem();
-  private final DriveSubsystem drive = new DriveSubsystem();
+  public final static DriveSubsystem drive = new DriveSubsystem();
 
 
   private final XboxController gamepad = new XboxController(0);
@@ -94,7 +94,7 @@ public class RobotContainer {
 
     a.whenPressed(new OpenClawCommand(claw));
     b.whenPressed(new CloseClawCommand(claw));
-    dpadUp.whenPressed(new ArmUpCommand(arm));
+    dpadUp.whenPressed(new ArmUpCommand(arm, 50.0));
     dpadRight.whenPressed(new ArmMiddleCommand(arm));
     dpadDown.whenPressed(new ArmDownCommand(arm));
     

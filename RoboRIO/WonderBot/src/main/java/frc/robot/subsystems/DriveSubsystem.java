@@ -72,6 +72,22 @@ public class DriveSubsystem extends SubsystemBase {
     leftMotor.set(leftVolts / RobotController.getBatteryVoltage());
     rightMotor.set(rightVolts / RobotController.getBatteryVoltage());
   }
+  /**
+   * stops the left and right motors
+   */
+  public void stop(){
+    leftMotor.set(0);
+    rightMotor.set(0);
+  }
+
+  /**
+   * resets the encoder and gyro values
+   */
+  public void reset(){
+    leftEncoder.reset();
+    rightEncoder.reset();
+    gyro.reset();
+  }
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.

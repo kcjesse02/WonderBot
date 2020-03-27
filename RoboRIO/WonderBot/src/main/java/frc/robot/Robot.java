@@ -8,9 +8,13 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.ArmUpCommand;
 import frc.robot.commands.CloseClawCommand;
+import frc.robot.commands.DriveToDistance;
 import frc.robot.commands.OpenClawCommand;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
@@ -44,7 +48,9 @@ public class Robot extends TimedRobot {
     NetworkTableInstance inst = NetworkTableInstance.getDefault();
     table = inst.getTable("wondertable");
     NetworkTableEntry ent = table.getEntry("command");
+    NetworkTableEntry data = table.getEntry("data");
     ent.setNumber(0);
+    data.setNumber(0);
     
     /*
     UsbCamera cam = CameraServer.getInstance().startAutomaticCapture();
@@ -121,6 +127,12 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     NetworkTableEntry ent = table.getEntry("command");
     int command = ent.getNumber(0).intValue();
+    if(command == 1){
+
+    }
+    if(command == 2){
+      DriveToDistance back = new DriveToDistance(RobotContainer.drive, new Pose2d(0, 1, new Rotation2d(0)));
+    }
     if( command == 3){
       OpenClawCommand cl = new OpenClawCommand(RobotContainer.claw);
       cl.schedule();
@@ -129,6 +141,17 @@ public class Robot extends TimedRobot {
     if( command == 4){
       CloseClawCommand cl = new CloseClawCommand(RobotContainer.claw);
       cl.schedule();
+      ent.setNumber(0);
+    }
+    if(command == 5){
+      ArmUpCommand armUp = new ArmUpCommand(RobotContainer.arm, 50.0);
+      armUp.schedule();
+      ent.setNumber(0);
+    }
+
+    if(command == 6){
+      ArmUpCommand armDown = new ArmUpCommand(RobotContainer.arm, -30.0);
+      armDown.schedule();
       ent.setNumber(0);
     }
   }
