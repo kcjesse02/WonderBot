@@ -45,7 +45,7 @@ public class DriveToDistance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    drive.drive(1.0, targetRot.getRadians(), false);
+    drive.drive(1.0, (targetDist.getRotation()).getRadians(), false);
     Pose2d updateDist = drive.getPose();//most recent robot position
     //printing out new robot pose and wheel speed
     System.out.println("updateDist: "+updateDist);
