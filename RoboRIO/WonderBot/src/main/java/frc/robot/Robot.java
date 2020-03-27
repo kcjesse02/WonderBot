@@ -128,12 +128,12 @@ public class Robot extends TimedRobot {
     NetworkTableEntry ent = table.getEntry("command");
     int command = ent.getNumber(0).intValue();
     if(command == 1){
-      DriveToDistance back = new DriveToDistance(RobotContainer.drive, new Pose2d(0, 0.5, new Rotation2d(0)));
+      DriveToDistance back = new DriveToDistance(RobotContainer.drive, new Pose2d(0.5, 0, new Rotation2d(0)));
       back.schedule();
       ent.setNumber(0);
     }
     if(command == 2){
-      DriveToDistance back = new DriveToDistance(RobotContainer.drive, new Pose2d(0, -0.5, new Rotation2d(0)));
+      DriveToDistance back = new DriveToDistance(RobotContainer.drive, new Pose2d(-0.5, 0, new Rotation2d(0)));
       back.schedule();
       ent.setNumber(0);
     }
