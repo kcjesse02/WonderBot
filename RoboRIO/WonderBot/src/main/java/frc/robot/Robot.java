@@ -128,10 +128,14 @@ public class Robot extends TimedRobot {
     NetworkTableEntry ent = table.getEntry("command");
     int command = ent.getNumber(0).intValue();
     if(command == 1){
-
+      DriveToDistance back = new DriveToDistance(RobotContainer.drive, new Pose2d(0, 0.5, new Rotation2d(0)));
+      back.schedule();
+      ent.setNumber(0);
     }
     if(command == 2){
-      DriveToDistance back = new DriveToDistance(RobotContainer.drive, new Pose2d(0, 1, new Rotation2d(0)));
+      DriveToDistance back = new DriveToDistance(RobotContainer.drive, new Pose2d(0, -0.5, new Rotation2d(0)));
+      back.schedule();
+      ent.setNumber(0);
     }
     if( command == 3){
       OpenClawCommand cl = new OpenClawCommand(RobotContainer.claw);
@@ -150,7 +154,7 @@ public class Robot extends TimedRobot {
     }
 
     if(command == 6){
-      ArmUpCommand armDown = new ArmUpCommand(RobotContainer.arm, -30.0);
+      ArmUpCommand armDown = new ArmUpCommand(RobotContainer.arm, 0.0);
       armDown.schedule();
       ent.setNumber(0);
     }
