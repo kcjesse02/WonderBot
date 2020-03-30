@@ -47,43 +47,42 @@ public class DriveToDistance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
-    if(targetDist.getTranslation().getX()< 0)
-      drive.drive(-1.0, 0, false);
+    if(targetDist.getTranslation().getX() <= 0.0)
+      drive.drive(-0.3, 0.0, false);
     else 
-      drive.drive(1.0, 0, false);
+      drive.drive(0.3, 0.0, false);
 
     Pose2d updateDist = drive.getPose();//most recent robot position
     //printing out new robot pose and wheel speed
     System.out.println("updateDist: "+updateDist);
+    System.out.println("targetDist: "+targetDist);
     System.out.println("wheel speed: "+drive.getWheelSpeeds());
     //checks to see if the translation part of the robot position is equal to the target translation.
-    if(targetDist.getTranslation().getX()< 0){
+    if(targetDist.getTranslation().getX() <= 0.0){
+      System.out.println("in less than!");
       if((updateDist.getTranslation()).getX() <= (targetDist.getTranslation().getX())){
-        System.out.println("Done!");
+        
         isFinished = true;
       }
-    else{  
+    }
+    else {  
+      System.out.println("in greater than");
       if((updateDist.getTranslation()).getX() >= (targetDist.getTranslation().getX())){
-        System.out.println("Done!");
+        
         isFinished = true;
       }
     }
   }
-  }
-  
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    drive.stop();//sets motor velocity to zero before ending.
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(!isFinished){
-      drive.stop();//sets motor velocity to zero before ending.
-    }
     return isFinished;
   }
 }
