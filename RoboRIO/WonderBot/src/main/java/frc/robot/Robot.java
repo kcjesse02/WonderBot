@@ -127,59 +127,36 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     NetworkTableEntry ent = table.getEntry("command");
     int command = ent.getNumber(0).intValue();
+
     if(command == 1){
       DriveToDistance back = new DriveToDistance(RobotContainer.drive, new Pose2d(0.5, 0, new Rotation2d(0)));
       back.schedule();
-      while(back.isScheduled()){
-        System.out.println("drive forward");
-        continue;
-      }
       ent.setNumber(0);
     }
     if(command == 2){
       DriveToDistance back = new DriveToDistance(RobotContainer.drive, new Pose2d(-0.5, 0, new Rotation2d(0)));
       back.schedule();
-      while(back.isScheduled()){
-        System.out.println("drive back");
-        continue;
-      }
       ent.setNumber(0);
     }
     if( command == 3){
       OpenClawCommand cl = new OpenClawCommand(RobotContainer.claw);
       cl.schedule();
-      while(cl.isScheduled()){
-        System.out.println("open claw");
-        continue;
-      }
       ent.setNumber(0);
     }
     if( command == 4){
       CloseClawCommand cl = new CloseClawCommand(RobotContainer.claw);
       cl.schedule();
-      while(cl.isScheduled()){
-        System.out.println("close claw");
-        continue;
-      }
       ent.setNumber(0);
     }
     if(command == 5){
       ArmUpCommand armUp = new ArmUpCommand(RobotContainer.arm, 50.0);
       armUp.schedule();
-      while(armUp.isScheduled()){
-        System.out.println("Arm Up");
-        continue;
-      }
       ent.setNumber(0);
     }
 
     if(command == 6){
       ArmUpCommand armDown = new ArmUpCommand(RobotContainer.arm, 0.0);
       armDown.schedule();
-      while(armDown.isScheduled()){
-        System.out.println("Arm Down");
-        continue;
-      }
       ent.setNumber(0);
     }
   }
